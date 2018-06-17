@@ -2,8 +2,10 @@ const Discord = require("discord.js");
 const color = require("./color");
 
 const TOKEN = process.env.BOT_TOKEN;
-const PREFIX = "!";
+const PREFIX = "!!";
 const start_time = Date.now();
+
+const LIMIT = 3;
 
 var pingHue = function(ping_time) {
     var good_value = 100;
@@ -29,7 +31,9 @@ bot.on("message", function(message){
 
     switch (args[0].toLowerCase()) {
         case "ping":
-            message.channel.sendMessage("Pong!");
+            message.channel.send("Pong!").catch((error) => {
+                console.error(error);
+            });
             break;
         case "stats":
         case "statistics":
@@ -47,6 +51,15 @@ bot.on("message", function(message){
             break;
         default:
             message.channel.sendMessage("Bad Command :(");
+    }
+});
+
+bot.on("messageReactionAdd", (reaction, user) => {
+    let message = reaction.message, 
+        reactions = message.reactions,
+        numReactions = reactions.size;
+    if (numReactions > LIMIT) {
+        reaction.remove(user);
     }
 });
 
