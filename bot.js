@@ -7,6 +7,11 @@ const start_time = Date.now();
 
 const LIMIT = 3;
 
+const ILLEGAL = [
+    "🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", 
+    "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹", "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"
+];
+
 var pingHue = function(ping_time) {
     var good_value = 100;
     var bad_value = 300;
@@ -58,7 +63,11 @@ bot.on("messageReactionAdd", (reaction, user) => {
     let message = reaction.message, 
         reactions = message.reactions,
         numReactions = reactions.size;
+    console.log(reaction);
     if (numReactions > LIMIT) {
+        reaction.remove(user);
+    }
+    if (ILLEGAL.includes(reaction.emoji.name)) {
         reaction.remove(user);
     }
 });
