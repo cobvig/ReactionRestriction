@@ -5,7 +5,7 @@ const TOKEN = process.env.BOT_TOKEN;
 const PREFIX = "!!";
 const start_time = Date.now();
 
-const LIMIT = 3;
+const LIMIT = 4;
 
 const ILLEGAL = [
     "🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", 
