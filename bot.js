@@ -54,8 +54,6 @@ bot.on("message", function(message){
                 .setTimestamp()
             message.channel.sendEmbed(embed);
             break;
-        default:
-            message.channel.sendMessage("Bad Command :(");
     }
 });
 
